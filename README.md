@@ -57,3 +57,12 @@ make && make install
 Run ``sudo buf -h`` to verify it works (if it isn't recognized as a command, restart your shell and try again)
 
 You're done!
+
+# Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+To set up the commit message template:
+```bash
+git config commit.template .gitmessage
+```
