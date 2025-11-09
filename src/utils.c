@@ -200,7 +200,7 @@ int list_removable_devices(void) {
     printf("================================================================\n");
     
     snprintf(command, sizeof(command), 
-             "lsblk -d -o NAME,RM,SIZE,MODEL,TYPE -n | awk '$2==\"1\" && $5==\"disk\" {print $1}'");
+             "lsblk -d -o NAME,TRAN,TYPE -n | awk '($2==\"usb\" || $2==\"uas\") && $3==\"disk\" {print $1}'");
     
     pipe = popen(command, "r");
     if (pipe == NULL) {
@@ -251,7 +251,8 @@ int list_removable_devices(void) {
         if (pipe != NULL) {
             if (fgets(size, sizeof(size), pipe) != NULL) {
                 size[strcspn(size, "\n")] = 0;
-                trim_whitespace(size);
+                char *trimmed = trim_whitespace(size);
+                memmove(size, trimmed, strlen(trimmed) + 1);
             }
             pclose(pipe);
         }
@@ -262,7 +263,8 @@ int list_removable_devices(void) {
         if (pipe != NULL) {
             if (fgets(model, sizeof(model), pipe) != NULL) {
                 model[strcspn(model, "\n")] = 0;
-                trim_whitespace(model);
+                char *trimmed = trim_whitespace(model);
+                memmove(model, trimmed, strlen(trimmed) + 1);
             }
             pclose(pipe);
         }
