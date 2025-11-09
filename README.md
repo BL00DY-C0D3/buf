@@ -1,6 +1,12 @@
 # buf
 Is it Bryson's USB Flasher or Bootable USB Flasher?
 
+# Installing
+Run the following command:
+```
+curl -fsSL https://raw.githubusercontent.com/Germ-99/buf/main/install.sh | bash
+```
+
 # Building
 
 **The following dependencies are required for BUILDING:**
